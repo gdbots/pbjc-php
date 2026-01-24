@@ -6,8 +6,10 @@ use Gdbots\Pbjc\CompileOptions;
 use Gdbots\Pbjc\Generator\Generator;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\SchemaStore;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-abstract class GeneratorExtension extends \Twig_Extension
+abstract class GeneratorExtension extends AbstractExtension
 {
     const LANGUAGE = 'unknown';
 
@@ -33,17 +35,17 @@ abstract class GeneratorExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('has_other_major_rev', [$this, 'hasOtherMajorRev']),
-            new \Twig_SimpleFunction('is_same_namespace', [$this, 'isSameNamespace']),
-            new \Twig_SimpleFunction('get_all_versions', [$this, 'getAllVersions']),
-            new \Twig_SimpleFunction('schema_to_class_name', [$this->generator, 'schemaToClassName']),
-            new \Twig_SimpleFunction('schema_to_fq_class_name', [$this->generator, 'schemaToFqClassName']),
-            new \Twig_SimpleFunction('enum_to_class_name', [$this->generator, 'enumToClassName']),
-            new \Twig_SimpleFunction('schema_to_native_package', [$this->generator, 'schemaToNativePackage']),
-            new \Twig_SimpleFunction('schema_to_native_class_path', [$this->generator, 'schemaToNativeClassPath']),
-            new \Twig_SimpleFunction('enum_to_native_package', [$this->generator, 'enumToNativePackage']),
-            new \Twig_SimpleFunction('schema_to_native_namespace', [$this->generator, 'schemaToNativeNamespace']),
-            new \Twig_SimpleFunction('enum_to_native_namespace', [$this->generator, 'enumToNativeNamespace']),
+            new TwigFunction('has_other_major_rev', [$this, 'hasOtherMajorRev']),
+            new TwigFunction('is_same_namespace', [$this, 'isSameNamespace']),
+            new TwigFunction('get_all_versions', [$this, 'getAllVersions']),
+            new TwigFunction('schema_to_class_name', [$this->generator, 'schemaToClassName']),
+            new TwigFunction('schema_to_fq_class_name', [$this->generator, 'schemaToFqClassName']),
+            new TwigFunction('enum_to_class_name', [$this->generator, 'enumToClassName']),
+            new TwigFunction('schema_to_native_package', [$this->generator, 'schemaToNativePackage']),
+            new TwigFunction('schema_to_native_class_path', [$this->generator, 'schemaToNativeClassPath']),
+            new TwigFunction('enum_to_native_package', [$this->generator, 'enumToNativePackage']),
+            new TwigFunction('schema_to_native_namespace', [$this->generator, 'schemaToNativeNamespace']),
+            new TwigFunction('enum_to_native_namespace', [$this->generator, 'enumToNativeNamespace']),
         ];
     }
 

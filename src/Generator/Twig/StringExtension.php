@@ -4,8 +4,11 @@ namespace Gdbots\Pbjc\Generator\Twig;
 
 use Gdbots\Pbj\Util\SlugUtil;
 use Gdbots\Pbj\Util\StringUtil;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
-class StringExtension extends \Twig_Extension
+class StringExtension extends AbstractExtension
 {
     /**
      * {@inheritdoc}
@@ -13,9 +16,9 @@ class StringExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('class_name', [$this, 'className']),
-            new \Twig_SimpleFunction('indent_string', [$this, 'indentString']),
-            new \Twig_SimpleFunction('dump', [$this, 'dump']),
+            new TwigFunction('class_name', [$this, 'className']),
+            new TwigFunction('indent_string', [$this, 'indentString']),
+            new TwigFunction('dump', [$this, 'dump']),
         ];
     }
 
@@ -25,10 +28,10 @@ class StringExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new \Twig_SimpleFilter('reduce_spaces', [$this, 'reduceSpaces']),
-            new \Twig_SimpleFilter('to_slug_from_camel', [$this, 'toSlugFromCamel']),
-            new \Twig_SimpleFilter('to_camel_from_slug', [$this, 'toCamelFromSlug']),
-            new \Twig_SimpleFilter('slugify', [$this, 'slugify']),
+            new TwigFilter('reduce_spaces', [$this, 'reduceSpaces']),
+            new TwigFilter('to_slug_from_camel', [$this, 'toSlugFromCamel']),
+            new TwigFilter('to_camel_from_slug', [$this, 'toCamelFromSlug']),
+            new TwigFilter('slugify', [$this, 'slugify']),
         ];
     }
 

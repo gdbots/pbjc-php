@@ -10,6 +10,8 @@ use Gdbots\Pbjc\Generator\Twig\StringExtension;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\SchemaStore;
 use Gdbots\Pbjc\Util\OutputFile;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 abstract class Generator
 {
@@ -21,7 +23,7 @@ abstract class Generator
     /** @var CompileOptions */
     protected $compileOptions;
 
-    /** @var \Twig_Environment */
+    /** @var Environment */
     protected $twig;
 
     /**
@@ -371,12 +373,12 @@ abstract class Generator
     /**
      * Get the twig environment that will render skeletons.
      *
-     * @return \Twig_Environment
+     * @return Environment
      */
     protected function getTwig()
     {
         if (null === $this->twig) {
-            $this->twig = new \Twig_Environment(new \Twig_Loader_Filesystem(self::TEMPLATE_DIR), [
+            $this->twig = new Environment(new FilesystemLoader([self::TEMPLATE_DIR]), [
                 'debug'            => true,
                 'cache'            => false,
                 'strict_variables' => true,
