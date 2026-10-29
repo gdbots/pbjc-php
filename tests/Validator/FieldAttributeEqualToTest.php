@@ -2,11 +2,13 @@
 
 namespace Gdbots\Tests\Pbjc\Validator;
 
+use Gdbots\Pbjc\Enum\FieldRule;
 use Gdbots\Pbjc\FieldDescriptor;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\Validator\FieldAttributeEqualTo;
+use PHPUnit\Framework\TestCase;
 
-class FieldAttributeEqualToTest extends \PHPUnit_Framework_TestCase
+class FieldAttributeEqualToTest extends TestCase
 {
     public function testValidateSame()
     {
@@ -28,11 +30,9 @@ class FieldAttributeEqualToTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException \Gdbots\Pbjc\Exception\ValidatorException
-     */
     public function testValidateException()
     {
+        $this->expectException(\Gdbots\Pbjc\Exception\ValidatorException::class);
         $a = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-0', ['fields' => [
             new FieldDescriptor('f1', [
                 'type' => 'string',
@@ -49,22 +49,20 @@ class FieldAttributeEqualToTest extends \PHPUnit_Framework_TestCase
         $asset->validate($a, $b);
     }
 
-    /**
-     * @expectedException \Gdbots\Pbjc\Exception\ValidatorException
-     */
     public function testValidateFieldRuleException()
     {
+        $this->expectException(\Gdbots\Pbjc\Exception\ValidatorException::class);
         $a = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-0', ['fields' => [
             new FieldDescriptor('f1', [
                 'type' => 'string',
-                'rule' => 'set',
+                'rule' => FieldRule::A_SET,
             ]),
         ]]);
 
         $b = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-1', ['fields' => [
             new FieldDescriptor('f1', [
                 'type' => 'string',
-                'rule' => 'list',
+                'rule' => FieldRule::A_LIST,
             ]),
         ]]);
 

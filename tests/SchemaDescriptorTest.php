@@ -6,13 +6,14 @@ use Gdbots\Pbjc\FieldDescriptor;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\SchemaId;
 use Gdbots\Pbjc\SchemaStore;
+use PHPUnit\Framework\TestCase;
 
-class SchemaDescriptorTest extends \PHPUnit_Framework_TestCase
+class SchemaDescriptorTest extends TestCase
 {
     /** FieldDescriptor */
     protected $schema;
 
-    public function setUp()
+    public function setUp(): void
     {
         SchemaStore::addSchema(
             SchemaId::fromString('pbj:vendor2:package2:category2:message2:1-0-0'),
@@ -56,7 +57,7 @@ class SchemaDescriptorTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->schema = null;
     }

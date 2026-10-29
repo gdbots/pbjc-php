@@ -7,25 +7,22 @@ use Gdbots\Pbjc\FieldDescriptor;
 use Gdbots\Pbjc\Generator\Generator;
 use Gdbots\Pbjc\Generator\JsonSchemaGenerator;
 use Gdbots\Pbjc\SchemaDescriptor;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-class JsonSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
+class JsonSchemaGeneratorTest extends TestCase
 {
     /** @var Generator */
     private $generator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->generator = new JsonSchemaGenerator(new CompileOptions([
             'namespaces' => ['acme:blog'],
         ]));
     }
 
-    /**
-     * @dataProvider getSchemas
-     *
-     * @param SchemaDescriptor $schema
-     * @param array            $files
-     */
+    #[DataProvider('getSchemas')]
     public function testGenerateSchema(SchemaDescriptor $schema, array $files)
     {
         $this->markTestSkipped('refactoring');
@@ -40,10 +37,7 @@ class JsonSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @return array
-     */
-    public function getSchemas()
+    public static function getSchemas(): array
     {
         return [
             [
@@ -73,7 +67,7 @@ class JsonSchemaGeneratorTest extends \PHPUnit_Framework_TestCase
                                 'rule'   => 'map',
                             ]),
                             new FieldDescriptor('node_refs', [
-                                'type' => 'message-ref',
+                                'type' => 'node-ref',
                                 'rule' => 'set',
                             ]),
                             new FieldDescriptor('set_with_pattern', [

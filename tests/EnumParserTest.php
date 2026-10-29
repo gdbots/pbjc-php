@@ -1,12 +1,14 @@
 <?php
 
-namespace Gdbots\Tests\Pbjc\Compiler;
+namespace Gdbots\Tests\Pbjc;
 
 use Gdbots\Pbjc\EnumDescriptor;
 use Gdbots\Pbjc\EnumParser;
 use Gdbots\Pbjc\Util\LanguageBag;
+use PHPUnit\Framework\TestCase;
+use TypeError;
 
-class EnumParserTest extends \PHPUnit_Framework_TestCase
+class EnumParserTest extends TestCase
 {
     public function testFromFile()
     {
@@ -40,11 +42,9 @@ class EnumParserTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($parser->fromFile(__DIR__ . '/Fixtures/schemas/acme/blog/enums.xml'), $enums);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testFromFileException()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $parser = new EnumParser();
         $parser->fromFile(__DIR__ . '/Fixtures/missing_enum_type.xml');
     }

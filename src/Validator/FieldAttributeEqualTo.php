@@ -47,12 +47,12 @@ class FieldAttributeEqualTo implements Constraint
             if ($field->$method() != $fb[$name]->$method()) {
                 $value = $field->$method();
 
-                if ($value instanceof Enum) {
-                    $value = $value->__toString();
+                if ($value instanceof \BackedEnum) {
+                    $value = $value->value;
                 }
 
                 if ($value instanceof Type) {
-                    $value = $value->getTypeName()->__toString();
+                    $value = $value->getTypeName()->value;
                 }
 
                 if ($value === true) {

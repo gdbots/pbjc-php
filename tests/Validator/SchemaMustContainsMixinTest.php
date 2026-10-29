@@ -6,8 +6,9 @@ use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\SchemaId;
 use Gdbots\Pbjc\SchemaStore;
 use Gdbots\Pbjc\Validator\SchemaMustContainsMixin;
+use PHPUnit\Framework\TestCase;
 
-class SchemaMustContainsMixinTest extends \PHPUnit_Framework_TestCase
+class SchemaMustContainsMixinTest extends TestCase
 {
     public function testValidateSame()
     {
@@ -56,11 +57,9 @@ class SchemaMustContainsMixinTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException \Gdbots\Pbjc\Exception\ValidatorException
-     */
     public function xxtestValidateException()
     {
+        $this->expectException(\Gdbots\Pbjc\Exception\ValidatorException::class);
         $a = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-0', ['mixins' => [
             new SchemaDescriptor('pbj:vendor2:package2:category2:message2:1-0-0'),
         ]]);

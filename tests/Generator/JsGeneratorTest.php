@@ -7,13 +7,14 @@ use Gdbots\Pbjc\EnumDescriptor;
 use Gdbots\Pbjc\Generator\Generator;
 use Gdbots\Pbjc\Generator\JsGenerator;
 use Gdbots\Pbjc\SchemaDescriptor;
+use PHPUnit\Framework\TestCase;
 
-class JsGeneratorTest extends \PHPUnit_Framework_TestCase
+class JsGeneratorTest extends TestCase
 {
     /** @var Generator */
     private $generator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->generator = new JsGenerator(new CompileOptions([
             'namespaces' => ['acme:blog'],
@@ -24,7 +25,7 @@ class JsGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $enum = new EnumDescriptor('gdbots:tests:some-enum', 'int', ['K1' => 1, 'K2' => 2, 'K3' => 3]);
         $expected = <<<OUTPUT
-import Enum from '@gdbots/pbj/Enum';
+import Enum from '@gdbots/pbj/Enum.js';
 
 export default class SomeEnum extends Enum {
 }
@@ -43,7 +44,7 @@ OUTPUT;
 
         $enum = new EnumDescriptor('gdbots:tests:some-enum', 'string', ['K1' => 'v1', 'K2' => 'v2', 'K3' => 'v3']);
         $expected = <<<OUTPUT
-import Enum from '@gdbots/pbj/Enum';
+import Enum from '@gdbots/pbj/Enum.js';
 
 export default class SomeEnum extends Enum {
 }

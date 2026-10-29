@@ -6,13 +6,14 @@ use Gdbots\Pbjc\Enum\FieldRule;
 use Gdbots\Pbjc\EnumDescriptor;
 use Gdbots\Pbjc\FieldDescriptor;
 use Gdbots\Pbjc\SchemaDescriptor;
+use PHPUnit\Framework\TestCase;
 
-class FieldDescriptorTest extends \PHPUnit_Framework_TestCase
+class FieldDescriptorTest extends TestCase
 {
     /** FieldDescriptor */
     protected $field;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->field = new FieldDescriptor('name', [
             'type'        => 'string',
@@ -31,7 +32,7 @@ class FieldDescriptorTest extends \PHPUnit_Framework_TestCase
         ]);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->field = null;
     }
@@ -44,13 +45,13 @@ class FieldDescriptorTest extends \PHPUnit_Framework_TestCase
     public function testGetType()
     {
         $this->assertInstanceOf('Gdbots\Pbjc\Type\StringType', $this->field->getType());
-        $this->assertEquals('string', $this->field->getType()->getTypeName()->__toString());
+        $this->assertEquals('string', $this->field->getType()->getTypeName()->value);
     }
 
     public function testGetRule()
     {
         $this->assertInstanceOf('Gdbots\Pbjc\Enum\FieldRule', $this->field->getRule());
-        $this->assertEquals(FieldRule::A_SINGLE_VALUE(), $this->field->getRule());
+        $this->assertEquals(FieldRule::A_SINGLE_VALUE, $this->field->getRule());
     }
 
     public function testIsASingleValue()

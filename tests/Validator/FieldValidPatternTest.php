@@ -5,8 +5,9 @@ namespace Gdbots\Tests\Pbjc\Validator;
 use Gdbots\Pbjc\FieldDescriptor;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\Validator\FieldValidPattern;
+use PHPUnit\Framework\TestCase;
 
-class FieldValidPatternTest extends \PHPUnit_Framework_TestCase
+class FieldValidPatternTest extends TestCase
 {
     public function testValidateSame()
     {
@@ -30,11 +31,9 @@ class FieldValidPatternTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException \Gdbots\Pbjc\Exception\ValidatorException
-     */
     public function testValidateException()
     {
+        $this->expectException(\Gdbots\Pbjc\Exception\ValidatorException::class);
         $a = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-0', ['fields' => [
             new FieldDescriptor('f1', [
                 'type'    => 'string',

@@ -4,8 +4,9 @@ namespace Gdbots\Tests\Pbjc\Validator;
 
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\Validator\SchemaIsMixin;
+use PHPUnit\Framework\TestCase;
 
-class SchemaIsMixinTest extends \PHPUnit_Framework_TestCase
+class SchemaIsMixinTest extends TestCase
 {
     public function testValidateSame()
     {
@@ -18,11 +19,9 @@ class SchemaIsMixinTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(true);
     }
 
-    /**
-     * @expectedException \Gdbots\Pbjc\Exception\ValidatorException
-     */
     public function testValidateException()
     {
+        $this->expectException(\Gdbots\Pbjc\Exception\ValidatorException::class);
         $a = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-0', ['is-mixin' => true]);
         $b = new SchemaDescriptor('pbj:vendor:package:category:message:1-0-1');
 

@@ -5,8 +5,9 @@ namespace Gdbots\Tests\Pbjc;
 use Gdbots\Pbjc\EnumDescriptor;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\SchemaStore;
+use PHPUnit\Framework\TestCase;
 
-class SchemaStoreTest extends \PHPUnit_Framework_TestCase
+class SchemaStoreTest extends TestCase
 {
     public function testAddDir()
     {

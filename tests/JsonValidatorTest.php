@@ -1,16 +1,16 @@
 <?php
 
-namespace Gdbots\Tests\Pbjc\Compiler;
+namespace Gdbots\Tests\Pbjc;
 
-use JsonSchema\RefResolver;
+use JsonSchema\Uri\UriResolver;
 use JsonSchema\Uri\UriRetriever;
 use JsonSchema\Validator;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-class JsonValidatorTest extends \PHPUnit_Framework_TestCase
+class JsonValidatorTest extends TestCase
 {
-    /**
-     * @dataProvider getSchemas
-     */
+    #[DataProvider('getSchemas')]
     public function testValidateSchema($data)
     {
         if (is_string($data)) {
@@ -22,20 +22,17 @@ class JsonValidatorTest extends \PHPUnit_Framework_TestCase
         $schema = $retriever->retrieve('http://json-schema.org/draft-04/schema#');
 
         // resolve $ref's
-        $refResolver = new RefResolver($retriever);
-        $refResolver->resolve($schema, __DIR__ . '/Fixtures');
+        //$refResolver = new UriResolver($retriever);
+        //$refResolver->resolve($schema, __DIR__ . '/Fixtures');
 
         // validate
         $validator = new Validator();
         $validator->check($data, $schema);
 
-        $this->assertTrue($validator->isValid());
+        $this->assertTrue(0 === $validator->check($data, $schema));
     }
 
-    /**
-     * @return array
-     */
-    public function getSchemas()
+    public static function getSchemas(): array
     {
         return [
             [

@@ -3,18 +3,19 @@
 namespace Gdbots\Tests\Pbjc;
 
 use Gdbots\Pbjc\EnumDescriptor;
+use PHPUnit\Framework\TestCase;
 
-class EnumDescriptorTest extends \PHPUnit_Framework_TestCase
+class EnumDescriptorTest extends TestCase
 {
     /** EnumDescriptor */
     protected $enum;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->enum = new EnumDescriptor('vendor:package:number', 'int', [1, 2, 3, 4]);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         $this->enum = null;
     }

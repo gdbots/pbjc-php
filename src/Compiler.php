@@ -9,9 +9,6 @@ use Symfony\Component\Finder\Finder;
 
 final class Compiler
 {
-    /**
-     * Construct.
-     */
     public function __construct()
     {
         $enums = [];
@@ -24,7 +21,6 @@ final class Compiler
 
             $files = Finder::create()->files()->in($dir)->name('*.xml');
 
-            /** @var \Symfony\Component\Finder\SplFileInfo $file */
             foreach ($files as $file) {
                 if ($file->getFilename() == 'enums.xml') {
                     $enums[] = $file->getPathName();
@@ -114,7 +110,6 @@ final class Compiler
             $exceptionFile = [];
         }
 
-        /** @var SchemaDescriptor $schema */
         foreach (SchemaStore::getSchemasByCurieMajor() as $schema) {
             $schema->setIsLatestVersion(true);
         }

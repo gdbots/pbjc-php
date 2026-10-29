@@ -9,25 +9,21 @@ use Gdbots\Pbjc\Generator\GeneratorResponse;
 use Gdbots\Pbjc\Generator\PhpGenerator;
 use Gdbots\Pbjc\SchemaDescriptor;
 use Gdbots\Pbjc\Util\LanguageBag;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
 
-class PhpGeneratorTest extends \PHPUnit_Framework_TestCase
+class PhpGeneratorTest extends TestCase
 {
-    /** @var Generator */
-    private $generator;
+    private Generator $generator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->generator = new PhpGenerator(new CompileOptions([
             'namespaces' => ['acme:blog'],
         ]));
     }
 
-    /**
-     * @dataProvider getSchemas
-     *
-     * @param SchemaDescriptor $schema
-     * @param array            $files
-     */
+    #[DataProvider('getSchemas')]
     public function testGenerateSchema(SchemaDescriptor $schema, array $files)
     {
         $this->markTestSkipped('refactoring');
@@ -42,10 +38,7 @@ class PhpGeneratorTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    /**
-     * @return array
-     */
-    public function getSchemas()
+    public static function getSchemas(): array
     {
         return [
             [

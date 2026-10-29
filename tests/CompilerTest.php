@@ -6,8 +6,9 @@ use Gdbots\Pbjc\CompileOptions;
 use Gdbots\Pbjc\Compiler;
 use Gdbots\Pbjc\SchemaStore;
 use Gdbots\Pbjc\Util\OutputFile;
+use PHPUnit\Framework\TestCase;
 
-class CompilerTest extends \PHPUnit_Framework_TestCase
+class CompilerTest extends TestCase
 {
     public function testConstruct()
     {
