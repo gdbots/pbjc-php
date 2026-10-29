@@ -10,6 +10,7 @@
     "symfony/console": "^8.1",
     "symfony/filesystem": "^8.1",
     "symfony/finder": "^8.1",
+    "symfony/yaml": "^8.1",
     "twig/twig": "^3.24"
   },
   "require-dev": {

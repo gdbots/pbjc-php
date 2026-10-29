@@ -3,6 +3,7 @@
 namespace Gdbots\Pbjc\Command;
 
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 
 class PbjcApplication extends Application
@@ -10,7 +11,7 @@ class PbjcApplication extends Application
     /**
      * {@inheritdoc}
      */
-    protected function getCommandName(InputInterface $input)
+    protected function getCommandName(InputInterface $input): ?string
     {
         return 'pbjc';
     }
@@ -18,7 +19,7 @@ class PbjcApplication extends Application
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultCommands()
+    protected function getDefaultCommands(): array
     {
         $defaultCommands = parent::getDefaultCommands();
 
@@ -30,7 +31,7 @@ class PbjcApplication extends Application
     /**
      * {@inheritdoc}
      */
-    public function getDefinition()
+    public function getDefinition(): InputDefinition
     {
         $inputDefinition = parent::getDefinition();
 

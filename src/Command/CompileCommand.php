@@ -20,7 +20,7 @@ class CompileCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('pbjc')
@@ -54,7 +54,7 @@ EOF
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
@@ -62,7 +62,7 @@ EOF
 
         if (!file_exists($file)) {
             $io->error(sprintf('File "%s" does not exists.', $file));
-            return;
+            return self::INVALID;
         }
 
         $parser = new Parser();
@@ -114,5 +114,7 @@ EOF
                 $io->error($e->getMessage());
             }
         }
+
+        return self::SUCCESS;
     }
 }
